@@ -29,16 +29,16 @@ The new architecture is located in the `new_root/` directory:
 
 ```text
 new_root/
-├── .env                 # Configuration secrets
-├── config.py            # Config loader
-├── main.py              # Application entry point
-├── data_service.py      # Data logic
+├── .env                  # Configuration secrets
+├── config.py             # Config loader
+├── main.py               # Application entry point
+├── data_service.py       # Data logic
 ├── utils/
-│   └── ui_components.py # UI factories (DRY principle)
+│   └── ui_components.py  # UI factories (DRY principle)
 └── pages/
-    ├── home.py          # Landing page
-    ├── city_dashboard.py# Main interactive dashboard
-    └── national_maps.py # Heatmaps
+    ├── home.py           # Landing page
+    ├── city_dashboard.py # Main interactive dashboard
+    └── national_maps.py  # Heatmaps
 ```
 
 ## How to Run
