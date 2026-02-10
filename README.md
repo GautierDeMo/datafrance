@@ -39,8 +39,10 @@ new_root/
     ├── home.py          # Landing page
     ├── city_dashboard.py# Main interactive dashboard
     └── national_maps.py # Heatmaps
+```
 
 ## How to Run
+
 Navigate to the new root: `cd new_root`
 Install dependencies if needed: `pip install dash dash-leaflet pandas python-dotenv`
 Run the app: `python main.py`
