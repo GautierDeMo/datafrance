@@ -2341,7 +2341,6 @@
 
 > So the answer to your question, the button dashboard and all other buttons works but not perfectly for some: When I choose a city in the dashboard tab. It zoom but not in the city chosen. Could you please elaborate something to correct it. The home button works correctly. With it (the success of zoom with the selected city in the dropdown list), the refactor exercice will be complete because I'm okay with your help
 
-
 ## 24th Response
 
 > Here is the update for the `prompts.md` file, adding the 23rd interaction.
