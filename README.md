@@ -44,6 +44,9 @@ new_root/
 ## How to Run
 
 Navigate to the new root: `cd new_root`
+
 Install dependencies if needed: `pip install dash dash-leaflet pandas python-dotenv`
+
 Run the app: `python main.py`
+
 Open http://127.0.0.1:8050
