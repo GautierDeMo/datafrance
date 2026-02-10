@@ -1,11 +1,13 @@
 # DataFrance Refactoring Project
 
 ## Purpose
+
 The goal of this exercise was to refactor a legacy, monolithic Dash application (`main.py`) into a professional, scalable, and maintainable software architecture. The original application suffered from "God Object" anti-patterns, including mixed concerns, hardcoded configuration, and performance bottlenecks due to file-based map generation.
 
 ## What We Did
 
 ### 1. Architecture Overhaul
+
 - **Separation of Concerns:** Split the single `main.py` into distinct layers:
   - **Data Layer:** `data_service.py` (Singleton pattern for loading & cleaning).
   - **Configuration:** `.env` and `config.py` (Environment variables).
@@ -13,6 +15,7 @@ The goal of this exercise was to refactor a legacy, monolithic Dash application 
 - **Multi-Page App:** Converted the tab-based layout into a proper Dash Multi-Page Application.
 
 ### 2. Technical Improvements
+
 - **In-Memory Maps:** Replaced `folium` (which saved HTML files to disk) with `dash-leaflet`. Maps are now generated dynamically in memory, improving performance and enabling cloud deployment.
 - **Data Robustness:** Implemented a `DataService` that:
   - Centralizes data loading.
@@ -21,6 +24,7 @@ The goal of this exercise was to refactor a legacy, monolithic Dash application 
 - **Configuration:** Removed hardcoded paths and "magic numbers" (years, column names).
 
 ### 3. Project Structure
+
 The new architecture is located in the `new_root/` directory:
 
 ```text
