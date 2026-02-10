@@ -40,7 +40,7 @@ layout = html.Div([
                 ], style={'width': '40%', 'display': 'inline-block', 'verticalAlign': 'top', 'padding': '20px'}),
 
                 # Right: Map (Dash Leaflet)
-                html.Div([
+                html.Div(id='map-container', children=[
                     ui.create_header("Localisation"),
                     dl.Map(id='city-map', center=[46, 2], zoom=6, children=[
                         dl.TileLayer(),
@@ -84,21 +84,30 @@ def update_info_table(city):
     return display_data, columns
 
 # 2. Update Map (Center & Marker)
+# We update the entire map component to ensure the center/zoom is forced to update
 @callback(
-    [Output('city-map', 'center'), Output('city-map', 'zoom'), Output('city-marker-layer', 'children')],
+    Output('map-container', 'children'),
     Input('city-selector', 'value')
 )
-def update_city_map(city):
-    if not city: return [46, 2], 6, []
+def update_map_component(city):
+    lat, lon, zoom = 46, 2, 6
+    marker_children = []
 
-    df = DataService.get_instance().get_city_data('infos', city)
-    if df is None or df.empty: return [46, 2], 6, []
+    if city:
+        df = DataService.get_instance().get_city_data('infos', city)
+        if df is not None and not df.empty:
+            lat = float(df['Latitude'].iloc[0])
+            lon = float(df['Longitude'].iloc[0])
+            zoom = 12
+            marker_children = [dl.Marker(position=[lat, lon], children=[dl.Tooltip(city)])]
 
-    lat = float(df['Latitude'].iloc[0])
-    lon = float(df['Longitude'].iloc[0])
-
-    marker = dl.Marker(position=[lat, lon], children=[dl.Tooltip(city)])
-    return [lat, lon], 12, [marker]
+    return [
+        ui.create_header("Localisation"),
+        dl.Map(center=[lat, lon], zoom=zoom, children=[
+            dl.TileLayer(),
+            dl.LayerGroup(id='city-marker-layer', children=marker_children)
+        ], style={'width': '100%', 'height': '500px'})
+    ]
 
 # 3. Update Population Graph
 @callback(
